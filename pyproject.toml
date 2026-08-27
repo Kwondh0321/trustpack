@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "trustpack"
+version = "0.1.0"
+description = "한국어 우선 통합 디지털 신뢰 증거 번들 생성기"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "Apache-2.0"
+authors = [{name = "Kwondh0321"}]
+keywords = ["evidence", "provenance", "reproducibility", "audit", "korean"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+]
+
+[project.urls]
+Homepage = "https://github.com/Kwondh0321/trustpack"
+Documentation = "https://github.com/Kwondh0321/trustpack#readme"
+Issues = "https://github.com/Kwondh0321/trustpack/issues"
+Source = "https://github.com/Kwondh0321/trustpack"
+
+[project.scripts]
+trustpack = "trustpack.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
