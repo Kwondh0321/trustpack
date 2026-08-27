@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Kwondh0321/trustpack/raw/main/schema/trustpack.schema.json",
+  "title": "TrustPack Evidence Bundle",
+  "type": "object",
+  "required": ["schema_version", "tool", "generated_at", "language", "profile", "target", "summary", "checks", "findings"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "tool": {
+      "type": "object",
+      "required": ["name", "version"],
+      "properties": {"name": {"const": "trustpack"}, "version": {"type": "string"}}
+    },
+    "generated_at": {"type": "string", "format": "date-time"},
+    "language": {"enum": ["ko", "en"]},
+    "profile": {"enum": ["full", "release", "research", "public-service"]},
+    "target": {
+      "type": "object",
+      "required": ["name", "path"],
+      "properties": {"name": {"type": "string"}, "path": {"const": "."}}
+    },
+    "summary": {
+      "type": "object",
+      "required": ["score", "finding_count", "by_severity"],
+      "properties": {
+        "score": {"type": "integer", "minimum": 0, "maximum": 100},
+        "finding_count": {"type": "integer", "minimum": 0},
+        "by_severity": {"type": "object"}
+      }
+    },
+    "checks": {"type": "array", "items": {"type": "object"}},
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["check", "rule_id", "severity", "title", "message"],
+        "properties": {
+          "check": {"type": "string"},
+          "rule_id": {"type": "string"},
+          "severity": {"enum": ["info", "low", "medium", "high", "critical"]},
+          "title": {"type": "string"},
+          "message": {"type": "string"},
+          "path": {"type": ["string", "null"]},
+          "line": {"type": ["integer", "null"], "minimum": 1}
+        }
+      }
+    }
+  }
+}

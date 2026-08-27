@@ -1,0 +1,9 @@
+{
+  "adapters": [
+    {
+      "name": "agentfence",
+      "command": ["agentfence", "{root}", "--format", "json", "--fail-on", "none"]
+    }
+  ]
+}
+
